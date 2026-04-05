@@ -2769,6 +2769,11 @@ components:
           type: string
           format: uri
           description: URL to the seller's privacy policy governing use of the buyer's contact information for marketing.
+        is_subscribed:
+          type: boolean
+          description: Whether the buyer is currently subscribed to marketing via this
+            channel. When true, agents SHOULD render the consent checkbox as pre-checked.
+            Defaults to false if omitted.
       required:
         - type
         - description
@@ -2914,7 +2919,7 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/MarketingConsentOption"
-          description: Marketing consent options the seller offers. When present, the agent SHOULD display these to the buyer before checkout completion.
+          description: "Marketing consent options the seller offers. When present, the agent SHOULD display these to the buyer before checkout completion. Agents MAY selectively surface a subset of options; options not surfaced MUST be omitted from marketing_consents. When absent, the agent MUST NOT surface any marketing consent UI."
         discounts:
           $ref: "#/components/schemas/DiscountsResponse"
           description: "Discount extension: submitted codes and applied discounts. Present when the 'discount' extension is active."
@@ -3127,7 +3132,7 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/MarketingConsent"
-          description: "Buyer's marketing consent decisions. Agents SHOULD include this when the session includes marketing_consent_options. Omission is treated as no consent given."
+          description: "Buyer's marketing consent decisions. Agents SHOULD include an entry for each consent option surfaced to the buyer. Options not surfaced MUST be omitted -- omission preserves existing subscription state."
       required:
         - payment_data
       example:

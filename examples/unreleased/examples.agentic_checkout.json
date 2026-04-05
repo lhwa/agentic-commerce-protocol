@@ -260,7 +260,8 @@
       {
         "type": "email",
         "description": "Promotional emails, product launches, and exclusive offers",
-        "privacy_policy_url": "https://www.testshop.com/privacy"
+        "privacy_policy_url": "https://www.testshop.com/privacy",
+        "is_subscribed": false
       }
     ],
     "messages": [],
