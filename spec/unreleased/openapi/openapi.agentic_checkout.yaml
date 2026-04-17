@@ -2763,9 +2763,9 @@ components:
             - email
             - sms
             - whatsapp
-        description:
+        display_text:
           type: string
-          description: "What the buyer is consenting to receive, e.g., 'promotional emails, product launches, and exclusive offers'. Agents MAY use this to compose their own display text."
+          description: "What the buyer is consenting to receive, e.g., 'promotional emails, product launches, and exclusive offers'. Agents MAY use this to compose their own consent prompt."
         privacy_policy_url:
           type: string
           format: uri
@@ -2777,11 +2777,11 @@ components:
             Defaults to false if omitted.
       required:
         - channel
-        - description
+        - display_text
         - privacy_policy_url
       example:
         channel: email
-        description: "Promotional emails, product launches, and exclusive offers"
+        display_text: "Promotional emails, product launches, and exclusive offers"
         privacy_policy_url: "https://www.example.com/privacy"
         is_subscribed: false
     MarketingConsent:
@@ -2929,7 +2929,7 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/MarketingConsentOption"
-          description: "Marketing consent options the seller offers. When present, the agent SHOULD display these to the buyer before checkout completion. Agents MAY selectively surface a subset of options; options not surfaced MUST be omitted from marketing_consents. When absent, the agent MUST NOT surface any marketing consent UI."
+          description: "Marketing consent options the seller offers. When present, the agent SHOULD display these to the buyer before checkout completion. Agents MAY selectively surface a subset of options; options not surfaced MUST be omitted from marketing_consents. When absent, the agent MUST NOT surface any marketing consent UI. An empty array is equivalent to absent."
         discounts:
           $ref: "#/components/schemas/DiscountsResponse"
           description: "Discount extension: submitted codes and applied discounts. Present when the 'discount' extension is active."
@@ -3142,7 +3142,7 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/MarketingConsent"
-          description: "Buyer's marketing consent decisions. Agents SHOULD include an entry for each consent option surfaced to the buyer. Options not surfaced MUST be omitted -- omission preserves existing subscription state."
+          description: "Buyer's marketing consent decisions. Agents SHOULD include an entry for each consent option surfaced to the buyer. Options not surfaced MUST be omitted -- omission preserves existing subscription state. Sellers SHOULD ignore entries in marketing_consents that do not correspond to a channel in marketing_consent_options."
       required:
         - payment_data
       example:

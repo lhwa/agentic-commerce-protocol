@@ -7,15 +7,17 @@ Add marketing consent support to enable sellers to offer opt-in marketing subscr
 ## New Schemas
 
 - **MarketingConsentOption**: Seller-declared consent option with `channel` (open enum, e.g. email, sms, whatsapp),
-  `description`, `privacy_policy_url`, and optional `is_subscribed` boolean for returning buyers.
+  `display_text`, `privacy_policy_url`, and optional `is_subscribed` boolean for returning buyers.
 - **MarketingConsent**: Agent-submitted consent decision with `channel` and `opted_in` boolean.
 
 ## CheckoutSession Changes
 
 - **`marketing_consent_options`** added as an optional array on `CheckoutSessionBase`. Sellers
   include this to signal available marketing channels and the buyer's existing subscription status.
+  An empty array is equivalent to absent.
 - **`marketing_consents`** added as an optional array on `CheckoutSessionCompleteRequest`. Agents
-  include the buyer's consent decisions for each option surfaced.
+  include the buyer's consent decisions for each option surfaced. Sellers ignore entries for
+  channels not offered.
 
 ## Marketing Channel Resolution
 
@@ -39,3 +41,4 @@ Add marketing consent support to enable sellers to offer opt-in marketing subscr
 - `spec/unreleased/json-schema/schema.agentic_checkout.json` (new schemas and fields)
 - `spec/unreleased/openapi/openapi.agentic_checkout.yaml` (new schemas and fields)
 - `examples/unreleased/examples.agentic_checkout.json` (consent examples)
+- `rfcs/rfc.marketing_consent.md` (RFC document)
