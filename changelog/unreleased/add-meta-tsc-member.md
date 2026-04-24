@@ -3,7 +3,7 @@
   **Added** -- Meta as a member of the ACP Technical Steering Committee
 
   ## Overview
-  Meta joins the ACP TSC to help steer the protocol’s development and enable merchants worldwide to participate in agentic commerce.
+  Meta joins the ACP TSC to help advance the protocol’s development and enable merchants worldwide to participate in agentic commerce.
 
   ## Changes
   - **MAINTAINERS.md**: Added Meta to the maintainers list
